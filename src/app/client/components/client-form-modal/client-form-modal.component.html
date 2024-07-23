@@ -1,0 +1,260 @@
+<div class="font-[Inter] fixed z-10 inset-0 overflow-y-auto w-full" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0 w-full">
+    <div
+      (click)="onClose()"
+      class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+      aria-hidden="true"
+    ></div>
+    <span
+      class="hidden sm:inline-block sm:align-middle sm:h-screen"
+      aria-hidden="true"
+      >&#8203;</span
+    >
+    <div
+      (click)="$event.stopPropagation()"
+      class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+    >
+      <div class="bg-white px-4 pt-5 md:pb-2 w-full">
+        <div class="sm:flex sm:items-start sm:justify-center w-full">
+          <div class="mt-0 md:mt-3 text-center mb-5 md:mb-2 px-2 sm:text-left w-full">
+            @if (showForm) {
+              <!-- Title -->
+              <h3
+                class="text-lg md:text-2xl leading-6 font-medium text-gray-800 text-center"
+                id="modal-title"
+              >
+                {{ title | titlecase }}
+              </h3>
+              <!-- Content -->
+              <div class="mt-2 flex justify-items-center">
+                <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="w-full">
+                  <!-- documentType -->
+                  <div>
+                    <div class="flex justify-between">
+                      <label
+                        for="documentType"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Document type:
+                      </label>
+                      <span
+                        *ngIf="isFieldInvalid('documentType')"
+                        class="text-sm text-red-500 italic"
+                      >
+                        *{{ getFieldError("documentType") }}
+                      </span>
+                    </div>
+                    <select
+                      id="documentType"
+                      class="bg-[#EAF0F7] p-3 rounded shadow-md w-full"
+                      formControlName="documentType"
+                    >
+                      <option value="" disabled selected>Enter document type</option>
+                      <option value="CC">CC - Cédula de ciudadanía</option>
+                      <option value="CE">CE - Cédula de extranjería</option>
+                      <option value="TI">TI - Tarjeta de Identidad</option>
+                      <option value="NIT">NIT - Número de Identificación Tributaria</option>
+                    </select>
+                  </div>
+
+                  <!-- documentNumber -->
+                  <div class="mt-3">
+                    <div class="flex justify-between">
+                      <label
+                        for="documentNumber"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                        >Document number:</label
+                      >
+                      <span
+                        *ngIf="isFieldInvalid('documentNumber')"
+                        class="text-sm text-red-500 italic"
+                      >
+                        *{{ getFieldError("documentNumber") }}
+                      </span>
+                    </div>
+                    <input
+                      id="documentNumber"
+                      type="text"
+                      placeholder="Enter the document number"
+                      class="bg-[#EAF0F7] p-3 rounded shadow-md w-full"
+                      formControlName="documentNumber"
+                    />
+                  </div>
+
+                  <!-- firstName -->
+                  <div class="mt-3">
+                    <div class="flex justify-between">
+                      <label
+                        for="firstName"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                        >First name:</label
+                      >
+                      <span
+                        *ngIf="isFieldInvalid('firstName')"
+                        class="text-sm text-red-500 italic"
+                      >
+                        *{{ getFieldError("firstName") }}
+                      </span>
+                    </div>
+                    <input
+                      id="firstName"
+                      type="text"
+                      placeholder="Enter first name"
+                      class="bg-[#EAF0F7] p-3 rounded shadow-md w-full"
+                      formControlName="firstName"
+                    />
+                  </div>
+
+                  <!-- secondName -->
+                  <div class="mt-3">
+                    <div class="flex justify-between">
+                      <label
+                        for="secondName"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                        >Second name:</label
+                      >
+                      <span
+                        *ngIf="isFieldInvalid('secondName')"
+                        class="text-sm text-red-500 italic"
+                      >
+                        *{{ getFieldError("secondName") }}
+                      </span>
+                    </div>
+                    <input
+                      id="secondName"
+                      type="text"
+                      placeholder="Enter second name"
+                      class="bg-[#EAF0F7] p-3 rounded shadow-md w-full"
+                      formControlName="secondName"
+                    />
+                  </div>
+
+                  <!-- firstSurname -->
+                  <div class="mt-3">
+                    <div class="flex justify-between">
+                      <label
+                        for="firstSurname"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                        >First surname:</label
+                      >
+                      <span
+                        *ngIf="isFieldInvalid('firstSurname')"
+                        class="text-sm text-red-500 italic"
+                      >
+                        *{{ getFieldError("firstSurname") }}
+                      </span>
+                    </div>
+                    <input
+                      id="firstSurname"
+                      type="text"
+                      placeholder="Enter first surname"
+                      class="bg-[#EAF0F7] p-3 rounded shadow-md w-full"
+                      formControlName="firstSurname"
+                    />
+                  </div>
+
+                  <!-- secondSurname -->
+                  <div class="mt-3">
+                    <div class="flex justify-between">
+                      <label
+                        for="secondSurname"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                        >Second surname:</label
+                      >
+                      <span
+                        *ngIf="isFieldInvalid('secondSurname')"
+                        class="text-sm text-red-500 italic"
+                      >
+                        *{{ getFieldError("secondSurname") }}
+                      </span>
+                    </div>
+                    <input
+                      id="secondSurname"
+                      type="text"
+                      placeholder="Enter second surname"
+                      class="bg-[#EAF0F7] p-3 rounded shadow-md w-full"
+                      formControlName="secondSurname"
+                    />
+                  </div>
+
+                  <!-- birthDate -->
+                  <div class="mt-3">
+                    <div class="flex justify-between">
+                      <label
+                        for="birthDate"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >Birth Date:</label>
+                      <span
+                        *ngIf="isFieldInvalid('birthDate')"
+                        class="text-sm text-red-500 italic"
+                      >
+                        *{{ getFieldError("birthDate") }}
+                      </span>
+                    </div>
+                    <input
+                      id="birthDate"
+                      type="date"
+                      placeholder="YYYY-MM-DD"
+                      class="bg-[#EAF0F7] p-3 rounded shadow-md w-full"
+                      formControlName="birthDate"
+                    />
+                  </div>
+
+                  <!-- Hidden submit button to allow the user to submit the form on key enter -->
+                  <div class="hidden">
+                    <button type="submit" class="hidden"></button>
+                  </div>
+
+                </form>
+              </div>
+            } @else {
+              <!-- Title -->
+              <h3
+                class="text-lg leading-6 font-medium text-gray-900"
+                id="modal-title"
+              >
+                {{ dialogMessage.title | titlecase }}
+              </h3>
+              <!-- Content -->
+              <div class="mt-2">
+                <p class="text-sm text-gray-500">{{ dialogMessage.description }}</p>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="bg-gray-50 px-4 pb-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        @if (showForm) {
+          <!-- Submit button -->
+          <div class="text-center flex gap-2 w-full">
+            <button
+              type="submit"
+              class="bg-[#39e554] hover:bg-[#33cc4b] text-white font-bold py-2 px-4 rounded w-full"
+              (click)="onSubmit()"
+            >
+              {{ action | titlecase }}
+            </button>
+            <button
+              type="button"
+              class="bg-[#FF4040] hover:bg-[#e53935] text-white font-bold py-2 px-4 rounded w-full"
+              (click)="onClose()"
+            >
+              Cancel
+            </button>
+          </div>
+        } @else {
+          <button
+            type="button"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[#39e554] text-base font-medium text-white hover:bg-[#33cc4b] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 sm:ml-3 sm:w-auto sm:text-sm"
+            (click)="onClose()"
+          >
+            Close
+          </button>
+        }
+      </div>
+
+    </div>
+  </div>
+</div>
